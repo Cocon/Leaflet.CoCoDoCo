@@ -2,9 +2,9 @@
 	"name": "leaflet.cocodoco",
 	"version": "0.0.1",
 	"description": "Leaflet plugin",
-	"main": "dist/main.js",
+	"main": "dist/index.js",
 	"scripts": {
-		"build": "rm -rf ./dist tsc",
+		"build": "rm -rf ./dist && tsc",
 		"build:web": "webpack --config webpack.config.ts",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
@@ -31,6 +31,8 @@
 		"webpack-cli": "^4.7.2"
 	},
 	"dependencies": {
-		"leaflet": "^1.7.1"
+		"@fortawesome/fontawesome-free": "^5.15.3",
+		"leaflet": "^1.7.1",
+		"leaflet-easybutton": "^2.4.0"
 	}
 }
