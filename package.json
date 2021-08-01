@@ -1,0 +1,36 @@
+{
+	"name": "leaflet.cocodoco",
+	"version": "0.0.1",
+	"description": "Leaflet plugin",
+	"main": "dist/main.js",
+	"scripts": {
+		"build": "rm -rf ./dist tsc",
+		"build:web": "webpack --config webpack.config.ts",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Cocon/Leaflet.CocoDoco.git"
+	},
+	"keywords": [
+		"leaflet"
+	],
+	"author": "YUUKIToriyama <github@toriyama.dev>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Cocon/Leaflet.CocoDoco/issues"
+	},
+	"homepage": "https://github.com/Cocon/Leaflet.CocoDoco#readme",
+	"devDependencies": {
+		"@types/leaflet": "^1.7.4",
+		"@types/node": "^16.4.9",
+		"ts-loader": "^9.2.4",
+		"ts-node": "^10.1.0",
+		"typescript": "^4.3.5",
+		"webpack": "^5.47.1",
+		"webpack-cli": "^4.7.2"
+	},
+	"dependencies": {
+		"leaflet": "^1.7.1"
+	}
+}
