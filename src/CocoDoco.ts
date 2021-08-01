@@ -1,27 +1,16 @@
 import L from 'leaflet';
-import 'leaflet-easybutton';
-import '@fortawesome/fontawesome-free';
+import './style.css';
 
-export class CocoDoco {
-	map: L.Map;
-	constructor(mapInstance: L.Map, options?: L.ControlOptions) {
-		this.map = mapInstance;
-		L.easyButton({
-			position: options?.position || "topright",
-			leafletClasses: true,
-			states: [this.buttonEnabled, this.buttonUnabled]
-		}).addTo(this.map);
+export class CocoDoco extends L.Control {
+	container: HTMLDivElement | null;
+	constructor(options?: L.ControlOptions) {
+		super(options);
+		this.container = null;
 	}
-	buttonEnabled: L.EasyButtonState = {
-		stateName: "enabled",
-		icon: "fa-location-dot",
-		title: "hogehoge",
-		onClick: () => { alert("hoge") }
-	}
-	buttonUnabled: L.EasyButtonState = {
-		stateName: "disabled",
-		icon: "fa-rotate-left",
-		title: "piyopiyo",
-		onClick: () => { alert("piyo") }
+
+	onAdd = (map: L.Map) => {
+		this.container = L.DomUtil.create("div", "leaflet-cocodoco");
+		const button = L.DomUtil.create("button", "leaflet-cocodoco-button", this.container);
+		return this.container;
 	}
 }
