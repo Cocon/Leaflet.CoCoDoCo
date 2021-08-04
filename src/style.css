@@ -21,3 +21,6 @@
 .leaflet-cocodoco-button:hover {
 	background-color: #F4F4F4;
 }
+.enabled {
+	background-color: #E0E0E0;
+}
