@@ -1,9 +1,11 @@
 import L from 'leaflet';
 import { openReverseGeocoder } from '@geolonia/open-reverse-geocoder';
 import './style.css';
+import PopupContent from './PopupContent';
 
 export class CocoDoco extends L.Control {
 	container: HTMLDivElement | null;
+	markers: L.Marker[] = [];
 	constructor(options?: L.ControlOptions) {
 		super(options);
 		this.container = null;
@@ -24,40 +26,40 @@ export class CocoDoco extends L.Control {
 		return this.container;
 	}
 
-	fetchData = (latlng: L.LatLng): HTMLElement => {
-		openReverseGeocoder([latlng.lng, latlng.lat]).then((result: any) => {
-			tableBody.appendChild(createRow("住所", result.prefecture + result.city));
-		}).catch((err: any) => {
-			console.error(err);
-			tableBody
-		})
-
-		const popupContainer = document.createElement("table");
-		const tableBody = document.createElement("tbody");
-		const createRow = (label: string, value: any) => {
-			const row = document.createElement("tr");
-			const cell1 = document.createElement("td");
-			cell1.innerText = label;
-			row.appendChild(cell1);
-			const cell2 = document.createElement("td");
-			cell2.innerText = value;
-			row.appendChild(cell2);
-			return row;
-		}
-		return popupContainer;
-	}
 	onButtonEnabled = (map: L.Map) => {
 		map.getContainer().style.cursor = "crosshair";
 		map.on({
 			// マウスの右クリックorタッチデバイスでの同一地点長押し
 			contextmenu: (event) => {
-				console.log(event.latlng);
+				// マーカーを作成
 				const marker = L.marker(event.latlng);
-				marker.bindPopup("")
+				// ポップアップを作成
+				const popup = L.popup().setContent(new PopupContent({
+					"緯度": event.latlng.lat,
+					"経度": event.latlng.lng,
+					"標高": "hogehoge メートル",
+					"地域": "piyopiyo町"
+				}));
+				// ポップアップをマーカーに紐づけ
+				marker.bindPopup(popup);
+				// マーカーの座標をマウスの現在地にセット
+				marker.setLatLng(event.latlng);
+				marker.addTo(map).openPopup();
+				// 配列に格納しておく
+				this.markers.push(marker);
 			}
 		})
 	}
 	onButtonDisabled = (map: L.Map) => {
+		// カーソルをもとに戻す
 		map.getContainer().style.cursor = "";
+		// マウスイベントの設定をもとに戻す
+		map.off("contextmenu");
+		// 描画したマーカーを削除する
+		this.markers.forEach(marker => {
+			map.removeLayer(marker);
+		})
 	}
 }
+
+

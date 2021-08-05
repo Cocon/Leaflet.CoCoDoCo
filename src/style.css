@@ -4,7 +4,7 @@
 	box-shadow: none;
 }
 .leaflet-cocodoco-button {
-	background-image: url(search.svg);
+	background-image: url(compass.svg);
 	background-repeat: no-repeat;
 	background-size: 50%;
 	background-position: 50% 50%;
@@ -22,5 +22,6 @@
 	background-color: #F4F4F4;
 }
 .enabled {
+	background-image: url(trush.svg);
 	background-color: #E0E0E0;
 }
