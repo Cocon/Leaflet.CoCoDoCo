@@ -1,7 +1,7 @@
 import L from 'leaflet';
-import { openReverseGeocoder } from '@geolonia/open-reverse-geocoder';
 import './style.css';
 import PopupContent from './PopupContent';
+import { getElevation } from "./utils";
 
 export class CocoDoco extends L.Control {
 	container: HTMLDivElement | null;
@@ -30,15 +30,17 @@ export class CocoDoco extends L.Control {
 		map.getContainer().style.cursor = "crosshair";
 		map.on({
 			// マウスの右クリックorタッチデバイスでの同一地点長押し
-			contextmenu: (event) => {
+			contextmenu: async (event) => {
+				// APIにアクセス
+				const elevation = await getElevation(event.latlng);
 				// マーカーを作成
 				const marker = L.marker(event.latlng);
 				// ポップアップを作成
 				const popup = L.popup().setContent(new PopupContent({
 					"緯度": event.latlng.lat,
 					"経度": event.latlng.lng,
-					"標高": "hogehoge メートル",
-					"地域": "piyopiyo町"
+					"標高": elevation.elevation,
+					"地域": ""//cityName.prefecture + cityName.city
 				}));
 				// ポップアップをマーカーに紐づけ
 				marker.bindPopup(popup);
@@ -61,5 +63,3 @@ export class CocoDoco extends L.Control {
 		})
 	}
 }
-
-
