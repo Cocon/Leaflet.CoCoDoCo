@@ -1,7 +1,7 @@
 import L from 'leaflet';
 import './style.css';
 import PopupContent from './PopupContent';
-import { getElevation } from "./utils";
+import { getElevation, getCityName } from "./utils";
 
 export class CocoDoco extends L.Control {
 	container: HTMLDivElement | null;
@@ -33,14 +33,17 @@ export class CocoDoco extends L.Control {
 			contextmenu: async (event) => {
 				// APIにアクセス
 				const elevation = await getElevation(event.latlng);
+				const cityName = await getCityName(event.latlng);
+				console.log(cityName);
 				// マーカーを作成
 				const marker = L.marker(event.latlng);
 				// ポップアップを作成
 				const popup = L.popup().setContent(new PopupContent({
+					"都道府県": cityName.prefecture,
+					"市町村名": cityName.city,
 					"緯度": event.latlng.lat,
 					"経度": event.latlng.lng,
-					"標高": elevation.elevation,
-					"地域": ""//cityName.prefecture + cityName.city
+					"標高": elevation.elevation + "m",
 				}));
 				// ポップアップをマーカーに紐づけ
 				marker.bindPopup(popup);

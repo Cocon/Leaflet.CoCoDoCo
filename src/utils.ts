@@ -8,3 +8,20 @@ export const getElevation = (latlng: L.LatLng): Promise<{ elevation: number | st
 		return response.json();
 	})
 }
+export const getCityName = (latlng: L.LatLng): Promise<{ code: string, prefecture: string, city: string }> => {
+	const endPoint = "https://geo-api-server.herokuapp.com/reverseGeocoding";
+	//return fetch(endPoint + `?lng=${latlng.lng}&lat=${latlng.lat}`).then(response => {
+	return fetch(endPoint + `?lat=${latlng.lng}&lng=${latlng.lat}`).then(response => {
+		return response.json();
+	}).then(json => {
+		if (json["Error"]) {
+			return {
+				code: "",
+				prefecture: "",
+				city: ""
+			}
+		} else {
+			return json;
+		}
+	})
+}
