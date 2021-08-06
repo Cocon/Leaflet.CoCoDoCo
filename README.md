@@ -2,6 +2,8 @@
 
 **This is pre-release**
 
+![Leaflet.CocoDoco 動作Demo](https://imgur.com/TcCuniQ.png)
+
 クリックした地点の位置情報を表示することができる Leaflet.js プラグインです。  
 Leaflet 地図上で右クリックをすると、その地点の大まかな住所とその土地の標高を知ることができます。  
 住所を求めるのにはオープンソースかつ無料で利用できる逆ジオコーダー [geolonia/open-reverse-geocoder](https://github.com/geolonia/open-reverse-geocoder) を、

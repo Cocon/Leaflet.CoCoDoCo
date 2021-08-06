@@ -1,5 +1,5 @@
 {
-	"name": "leaflet.cocodoco",
+	"name": "@coconmap/leaflet.cocodoco",
 	"version": "0.0.1",
 	"description": "Leaflet plugin",
 	"main": "dist/index.js",
