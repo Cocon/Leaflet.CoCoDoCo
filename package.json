@@ -1,6 +1,6 @@
 {
 	"name": "@coconmap/leaflet.cocodoco",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Leaflet plugin to show geographic informations of the place you clicked",
 	"main": "dist/index.js",
 	"scripts": {
