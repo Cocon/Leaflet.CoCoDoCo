@@ -4,11 +4,10 @@
 	"description": "Leaflet plugin",
 	"main": "dist/index.js",
 	"scripts": {
-		"copyfiles": "cp src/{compass.svg,trush.svg,style.css} dist",
+		"copyfiles": "cp src/compass.svg src/trush.svg src/style.css dist",
 		"build": "rm -rf ./dist && tsc && npm run copyfiles",
 		"build:web": "webpack --config webpack.config.ts",
-		"prepublishOnly": "npm run build && npm run build:web",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"prepublishOnly": "npm run build && npm run build:web"
 	},
 	"repository": {
 		"type": "git",
