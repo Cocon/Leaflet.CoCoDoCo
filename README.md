@@ -10,6 +10,10 @@ Leaflet 地図上で右クリックをすると、その地点の大まかな住
 高度を求めるのには [国土地理院の API](http://maps.gsi.go.jp/development/elevation_s.html) を用いています。  
 外部の API を使用していますので、過剰な負荷をかけるような使用はご遠慮ください。
 
+## Demo
+
+[https://cocon.github.io/Leaflet.CocoDoco/demo/index.html](https://cocon.github.io/Leaflet.CocoDoco/demo/index.html)
+
 ## Usage
 
 プラグインをインストールし、クラス`CocoDoco`を読み込んでください。
