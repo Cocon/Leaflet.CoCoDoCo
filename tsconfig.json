@@ -7,11 +7,16 @@
         "outDir": "./dist",
         "declaration": true,
         "module": "CommonJS",
-        "lib": ["ES6", "ES2017", "DOM"],
+        "lib": [
+            "ES6",
+            "ES2017",
+            "DOM"
+        ],
         "esModuleInterop": true,
         "isolatedModules": true,
-        "types": ["node"],
-        "typeRoots": ["src/@types"]
+        "types": [
+            "node"
+        ]
     },
     "include": [
         "src/**/*"
