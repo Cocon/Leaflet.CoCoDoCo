@@ -3,12 +3,18 @@ import './style.css';
 import PopupContent from './PopupContent';
 import { getElevation, getCityName } from "./utils";
 
+export interface CocoDocoOptions extends L.ControlOptions {
+	debug?: boolean
+}
+
 export class CocoDoco extends L.Control {
 	container: HTMLDivElement | null;
 	markers: L.Marker[] = [];
-	constructor(options?: L.ControlOptions) {
+	debug: boolean;
+	constructor(options?: CocoDocoOptions) {
 		super(options);
 		this.container = null;
+		this.debug = options?.debug || false;
 	}
 
 	onAdd = (map: L.Map) => {
@@ -18,11 +24,17 @@ export class CocoDoco extends L.Control {
 			if (button.classList.contains("enabled")) {
 				button.classList.remove("enabled");
 				this.onButtonDisabled(map);
+				if (this.debug) {
+					console.log("The button was disabled.");
+				}
 			} else {
 				button.classList.add("enabled");
 				this.onButtonEnabled(map);
+				if (this.debug) {
+					console.log("The button was enabled.");
+				}
 			}
-		})
+		});
 		return this.container;
 	}
 
@@ -34,7 +46,10 @@ export class CocoDoco extends L.Control {
 				// APIにアクセス
 				const elevation = await getElevation(event.latlng);
 				const cityName = await getCityName(event.latlng);
-				console.log(cityName);
+				if (this.debug) {
+					console.log(elevation);
+					console.log(cityName);
+				}
 				// マーカーを作成
 				const marker = L.marker(event.latlng);
 				// ポップアップを作成
@@ -53,7 +68,7 @@ export class CocoDoco extends L.Control {
 				// 配列に格納しておく
 				this.markers.push(marker);
 			}
-		})
+		});
 	}
 	onButtonDisabled = (map: L.Map) => {
 		// カーソルをもとに戻す
@@ -63,6 +78,6 @@ export class CocoDoco extends L.Control {
 		// 描画したマーカーを削除する
 		this.markers.forEach(marker => {
 			map.removeLayer(marker);
-		})
+		});
 	}
 }

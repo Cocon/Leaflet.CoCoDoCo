@@ -6,7 +6,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 const cocodoco = new CocoDoco({
-	position: "topleft"
+	position: "topleft",
+	debug: true
 });
 console.log(cocodoco);
 cocodoco.addTo(map);
