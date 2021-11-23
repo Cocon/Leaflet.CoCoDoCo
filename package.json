@@ -1,7 +1,7 @@
 {
 	"name": "@coconmap/leaflet.cocodoco",
 	"version": "0.0.1",
-	"description": "Leaflet plugin",
+	"description": "Leaflet plugin to show geographic informations of the place you clicked",
 	"main": "dist/index.js",
 	"scripts": {
 		"copyfiles": "cp src/compass.svg src/trush.svg src/style.css dist",
